@@ -96,6 +96,7 @@ class ContV(Value):
     def __init__(self, proc: Cont) -> None:
         self.proc = proc
 
+# types of continuation
 class AddSecondK(Cont):
     def __init__(self, e2: Expression, env: Env, k: Cont):
         self.e2 = e2
@@ -106,10 +107,21 @@ class DoAddK(Cont):
     def __init__(self, v1: Value, k: Cont):
         self.v1 = v1
         self.k = k
-        
+
+class SubSecondK(Cont):
+    def __init__(self, e2: Expression, env: Env, k: Cont):
+        self.e2 = e2
+        self.env = env
+        self.k = k
+
+class DoSubK(Cont):
+    def __init__(self, v1: Value, k: Cont):
+        self.v1 = v1
+        self.k = k
+
 class AppArgK(Cont):
     def __init__(self, e2: Expression, env: Env, k: Cont):
-        self.e2 = Expression
+        self.e2 = e2
         self.env = env
         self.k = k
 
