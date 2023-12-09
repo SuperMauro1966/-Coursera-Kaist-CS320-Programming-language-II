@@ -9,7 +9,7 @@ import logging
 # create logger
 logging.basicConfig()
 
-logger = logging.getLogger("KVAE")
+logger = logging.getLogger("KFAE")
 logger.setLevel(logging.DEBUG)
 
 
