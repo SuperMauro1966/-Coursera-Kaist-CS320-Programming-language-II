@@ -190,9 +190,8 @@ def interp(expr : Expression, env: Env, k: Cont) -> Value:
         return continue_cps(k, NumV(expr.n))
     elif isinstance(expr, Add):
         return interp(expr.left, env, AddSecondK(expr.right, env, k))
-    # elif isinstance(expr, Sub):
-    #    to be fixex -- create like the above structure
-    # return interp(expr.left, env, SubSecondK(expr.right, env, k) 
+    elif isinstance(expr, Sub):
+        return interp(expr.left, env, SubSecondK(expr.right, env, k)) 
     elif isinstance(expr, Id):
         return continue_cps(k, lookup(expr.name, env))
     elif isinstance(expr, Fun):
