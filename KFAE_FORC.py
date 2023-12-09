@@ -166,6 +166,10 @@ def continue_cps(k: Cont, v: Value)->Value:
         return interp(k.e2, k.env, DoAddK(v, k))
     elif isinstance(k, DoAddK):
         return continue_cps(k, Add(k.v1, v))
+    elif isinstance(k, SubSecondK):
+        return interp(k.e2, k.env, DoSubK(v, k))
+    elif isinstance(k, DoSubK):
+        return continue_cps(k, Sub(k.v1, v))
     elif isinstance(k, AppArgK):
         return interp(k.e2, k.env, DoAppK(v, k))
     elif isinstance(k, DoAppK):
