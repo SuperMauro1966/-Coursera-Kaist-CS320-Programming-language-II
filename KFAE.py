@@ -2,6 +2,10 @@ from typing import Dict, Callable
 from functools import partial
 import logging
 
+# implementation of the FAE with continuations
+
+# build continuation out of functions
+
 # create logger
 logging.basicConfig()
 
