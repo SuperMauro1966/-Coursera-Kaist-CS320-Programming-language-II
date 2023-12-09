@@ -9,13 +9,26 @@ logger = logging.getLogger("KVAE")
 logger.setLevel(logging.DEBUG)
 
 
-# expression hierarchy
+# roots for different types
+
+# expression
 class Expression():
     pass
 
-# expression types
-Cont = Callable[[Expression], Expression]
+# Value
+class Value():
+    pass
 
+# continuation
+Cont = Callable[[Value], Value]
+
+# type of environment
+Env = Dict[str, Value]
+
+# type of num expressions
+NumFunc = Callable[[int, int], int]
+
+# types of expression
 class Num(Expression):
     def __init__(self, n):
         self.n = n
@@ -63,13 +76,7 @@ class Vcc(Expression):
     def __str__(self) -> str:
         return f"Vcc({self.par_name}, {self.body})"
 
-# Value
-class Value():
-    pass
-
-# type of environment
-Env = Dict[str, Value]
-
+# types of values
 class NumV(Value):
     def __init__(self, n: int):
         self.n = n
@@ -87,7 +94,6 @@ class CloV(Value):
 class ContV(Value):
     def __init__(self, proc: Cont) -> None:
         self.proc = proc
-
 
 # execution exception
 class InterPreterException(Exception):
@@ -107,9 +113,6 @@ class NotNumExpression(Exception):
 
 class ClosureError(Exception):
     pass
-
-# type of num expressions
-NumFunc = Callable[[int, int], int]
 
 # initial continuation
 IdentityCont = lambda x: x
