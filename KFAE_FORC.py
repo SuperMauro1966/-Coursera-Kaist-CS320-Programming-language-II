@@ -161,6 +161,10 @@ NumFunc = Callable[[int, int], int]
 # initial continuation
 IdentityCont = lambda x: x
 
+# to be reviewed - wrong choices of
+# continuation
+# align to KFAE_BRUIJIN
+
 def continue_cps(k: Cont, v: Value)->Value:
     if isinstance(k, AddSecondK):
         return interp(k.e2, k.env, DoAddK(v, k))
